@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -27,4 +28,11 @@ public class WebApplicationConfiguration  implements WebMvcConfigurer {
         return resolver;
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry.addResourceHandler("/css/**")
+                    .addResourceLocations("/resources/css/");
+            registry.addResourceHandler("/img/**")
+                    .addResourceLocations("/resources/images/");
+    }
 }
